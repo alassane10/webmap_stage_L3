@@ -33,7 +33,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet-tilelayer-wmts.js"></script>
         <script src="js/leaflet-measure.js"></script>
         <script src="data/SriesinversesLamb93_66.js"></script>
         <script src="data/SriesnormalesLamb93_67.js"></script>
@@ -61,7 +60,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[44.20559914263316,6.19955363237655],[44.25871291457693,6.326560672266114]]);
+        }).fitBounds([[44.204768430333445,6.201036339279181],[44.25788381760758,6.328042716651213]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -669,21 +668,19 @@
         });
         layer_GoogleSatellite_64;
         map.addLayer(layer_GoogleSatellite_64);
-        map.createPane('pane_PlanIGNv2_65');
-        map.getPane('pane_PlanIGNv2_65').style.zIndex = 465;
-        var layer_PlanIGNv2_65 = L.tileLayer.wmts('https://wxs.ign.fr/decouverte/geoportail/wmts', {
-            pane: 'pane_PlanIGNv2_65',
-            layer: 'GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2',
-            tilematrixSet: 'PM',
-            format: 'image/png',
-            style: 'normal',
-            uppercase: true,
-            transparent: true,
-            continuousWorld : true,
+        map.createPane('pane_OSMStandard_65');
+        map.getPane('pane_OSMStandard_65').style.zIndex = 465;
+        var layer_OSMStandard_65 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_65',
             opacity: 1.0,
-            attribution: '',
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
         });
-        map.addLayer(layer_PlanIGNv2_65);
+        layer_OSMStandard_65;
+        map.addLayer(layer_OSMStandard_65);
         function pop_SriesinversesLamb93_66(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -903,7 +900,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(251,0,0,1.0)',
+                fillColor: 'rgba(251,0,0,0.4980392156862745)',
                 interactive: true,
             }
                     break;
@@ -993,7 +990,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(70,174,212,1.0)',
+                fillColor: 'rgba(70,174,212,0.5568627450980392)',
                 interactive: true,
             }
                     break;
@@ -1190,12 +1187,7 @@
             return {
                 pane: 'pane_StriesLamb93_71',
                 radius: 13.2,
-                opacity: 1,
-                color: 'rgba(184,8,8,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0,
+                stroke: false,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(58,8,184,1.0)',
@@ -1205,7 +1197,7 @@
         function style_StriesLamb93_71_1() {
             return {
                 pane: 'pane_StriesLamb93_71',
-                radius: 14.4,
+                radius: 9.999999999999996,
                 stroke: false,
                 fill: true,
                 fillOpacity: 1,
@@ -1303,7 +1295,7 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">fid</th>\
+                        <th scope="row">id</th>\
                         <td>' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
@@ -1311,7 +1303,7 @@
                         <td>' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">descriptio</th>\
+                        <th scope="row">Description</th>\
                         <td>' + (feature.properties['descriptio'] !== null ? autolinker.link(feature.properties['descriptio'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -1351,7 +1343,7 @@
         bounds_group.addLayer(layer_Photographie360Lamb93_73);
         map.addLayer(layer_Photographie360Lamb93_73);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Photographie360Lamb93_73.png" /> Photographie 360° Lamb-93': layer_Photographie360Lamb93_73,'<img src="legend/ContoursLamb93_72.png" /> Contours Lamb-93': layer_ContoursLamb93_72,'<img src="legend/StriesLamb93_71.png" /> Stries Lamb-93': layer_StriesLamb93_71,'<img src="legend/Failles1_70.png" /> Failles 1': layer_Failles1_70,'<img src="legend/Failles2_69.png" /> Failles 2': layer_Failles2_69,'Formations observées Lamb-93<br /><table><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F10.png" /></td><td>F1</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F101.png" /></td><td>F10</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F122.png" /></td><td>F12</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F133.png" /></td><td>F13</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F144.png" /></td><td>F14</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F265.png" /></td><td>F2-6</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F76.png" /></td><td>F7</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F87.png" /></td><td>F8</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_8.png" /></td><td></td></tr></table>': layer_FormationsobservesLamb93_68,'<img src="legend/SriesnormalesLamb93_67.png" /> Séries normales Lamb-93': layer_SriesnormalesLamb93_67,'<img src="legend/SriesinversesLamb93_66.png" /> Séries inverses Lamb-93': layer_SriesinversesLamb93_66,"Plan IGN v2": layer_PlanIGNv2_65,"Google Satellite": layer_GoogleSatellite_64,"RGEALTI_FXX_0980_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6370_MNT_LAMB93_IGN69_63,"RGEALTI_FXX_0980_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6365_MNT_LAMB93_IGN69_62,"RGEALTI_FXX_0980_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6360_MNT_LAMB93_IGN69_61,"RGEALTI_FXX_0980_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6355_MNT_LAMB93_IGN69_60,"RGEALTI_FXX_0980_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6350_MNT_LAMB93_IGN69_59,"RGEALTI_FXX_0980_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6345_MNT_LAMB93_IGN69_58,"RGEALTI_FXX_0980_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6340_MNT_LAMB93_IGN69_57,"RGEALTI_FXX_0980_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6335_MNT_LAMB93_IGN69_56,"RGEALTI_FXX_0975_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6370_MNT_LAMB93_IGN69_55,"RGEALTI_FXX_0975_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6365_MNT_LAMB93_IGN69_54,"RGEALTI_FXX_0975_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6360_MNT_LAMB93_IGN69_53,"RGEALTI_FXX_0975_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6355_MNT_LAMB93_IGN69_52,"RGEALTI_FXX_0975_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6350_MNT_LAMB93_IGN69_51,"RGEALTI_FXX_0975_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6345_MNT_LAMB93_IGN69_50,"RGEALTI_FXX_0975_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6340_MNT_LAMB93_IGN69_49,"RGEALTI_FXX_0975_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6335_MNT_LAMB93_IGN69_48,"RGEALTI_FXX_0970_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6370_MNT_LAMB93_IGN69_47,"RGEALTI_FXX_0970_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6365_MNT_LAMB93_IGN69_46,"RGEALTI_FXX_0970_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6360_MNT_LAMB93_IGN69_45,"RGEALTI_FXX_0970_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6355_MNT_LAMB93_IGN69_44,"RGEALTI_FXX_0970_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6350_MNT_LAMB93_IGN69_43,"RGEALTI_FXX_0970_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6345_MNT_LAMB93_IGN69_42,"RGEALTI_FXX_0970_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6340_MNT_LAMB93_IGN69_41,"RGEALTI_FXX_0970_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6335_MNT_LAMB93_IGN69_40,"RGEALTI_FXX_0965_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6370_MNT_LAMB93_IGN69_39,"RGEALTI_FXX_0965_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6365_MNT_LAMB93_IGN69_38,"RGEALTI_FXX_0965_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6360_MNT_LAMB93_IGN69_37,"RGEALTI_FXX_0965_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6355_MNT_LAMB93_IGN69_36,"RGEALTI_FXX_0965_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6350_MNT_LAMB93_IGN69_35,"RGEALTI_FXX_0965_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6345_MNT_LAMB93_IGN69_34,"RGEALTI_FXX_0965_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6340_MNT_LAMB93_IGN69_33,"RGEALTI_FXX_0965_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6335_MNT_LAMB93_IGN69_32,"RGEALTI_FXX_0960_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6370_MNT_LAMB93_IGN69_31,"RGEALTI_FXX_0960_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6365_MNT_LAMB93_IGN69_30,"RGEALTI_FXX_0960_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6360_MNT_LAMB93_IGN69_29,"RGEALTI_FXX_0960_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6355_MNT_LAMB93_IGN69_28,"RGEALTI_FXX_0960_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6350_MNT_LAMB93_IGN69_27,"RGEALTI_FXX_0960_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6345_MNT_LAMB93_IGN69_26,"RGEALTI_FXX_0960_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6340_MNT_LAMB93_IGN69_25,"RGEALTI_FXX_0960_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6335_MNT_LAMB93_IGN69_24,"RGEALTI_FXX_0955_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6370_MNT_LAMB93_IGN69_23,"RGEALTI_FXX_0955_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6365_MNT_LAMB93_IGN69_22,"RGEALTI_FXX_0955_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6360_MNT_LAMB93_IGN69_21,"RGEALTI_FXX_0955_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6355_MNT_LAMB93_IGN69_20,"RGEALTI_FXX_0955_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6350_MNT_LAMB93_IGN69_19,"RGEALTI_FXX_0955_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6345_MNT_LAMB93_IGN69_18,"RGEALTI_FXX_0955_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6340_MNT_LAMB93_IGN69_17,"RGEALTI_FXX_0955_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6335_MNT_LAMB93_IGN69_16,"RGEALTI_FXX_0950_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6370_MNT_LAMB93_IGN69_15,"RGEALTI_FXX_0950_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6365_MNT_LAMB93_IGN69_14,"RGEALTI_FXX_0950_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6360_MNT_LAMB93_IGN69_13,"RGEALTI_FXX_0950_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6355_MNT_LAMB93_IGN69_12,"RGEALTI_FXX_0950_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6350_MNT_LAMB93_IGN69_11,"RGEALTI_FXX_0950_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6345_MNT_LAMB93_IGN69_10,"RGEALTI_FXX_0950_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6340_MNT_LAMB93_IGN69_9,"RGEALTI_FXX_0950_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6335_MNT_LAMB93_IGN69_8,"RGEALTI_FXX_0945_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6370_MNT_LAMB93_IGN69_7,"RGEALTI_FXX_0945_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6365_MNT_LAMB93_IGN69_6,"RGEALTI_FXX_0945_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6360_MNT_LAMB93_IGN69_5,"RGEALTI_FXX_0945_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6355_MNT_LAMB93_IGN69_4,"RGEALTI_FXX_0945_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6350_MNT_LAMB93_IGN69_3,"RGEALTI_FXX_0945_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6345_MNT_LAMB93_IGN69_2,"RGEALTI_FXX_0945_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6340_MNT_LAMB93_IGN69_1,"RGEALTI_FXX_0945_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6335_MNT_LAMB93_IGN69_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Photographie360Lamb93_73.png" /> Photographie 360° Lamb-93': layer_Photographie360Lamb93_73,'<img src="legend/ContoursLamb93_72.png" /> Contours Lamb-93': layer_ContoursLamb93_72,'<img src="legend/StriesLamb93_71.png" /> Stries Lamb-93': layer_StriesLamb93_71,'<img src="legend/Failles1_70.png" /> Failles 1': layer_Failles1_70,'<img src="legend/Failles2_69.png" /> Failles 2': layer_Failles2_69,'Formations observées Lamb-93<br /><table><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F10.png" /></td><td>F1</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F101.png" /></td><td>F10</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F122.png" /></td><td>F12</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F133.png" /></td><td>F13</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F144.png" /></td><td>F14</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F265.png" /></td><td>F2-6</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F76.png" /></td><td>F7</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_F87.png" /></td><td>F8</td></tr><tr><td style="text-align: center;"><img src="legend/FormationsobservesLamb93_68_8.png" /></td><td></td></tr></table>': layer_FormationsobservesLamb93_68,'<img src="legend/SriesnormalesLamb93_67.png" /> Séries normales Lamb-93': layer_SriesnormalesLamb93_67,'<img src="legend/SriesinversesLamb93_66.png" /> Séries inverses Lamb-93': layer_SriesinversesLamb93_66,"OSM Standard": layer_OSMStandard_65,"Google Satellite": layer_GoogleSatellite_64,"RGEALTI_FXX_0980_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6370_MNT_LAMB93_IGN69_63,"RGEALTI_FXX_0980_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6365_MNT_LAMB93_IGN69_62,"RGEALTI_FXX_0980_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6360_MNT_LAMB93_IGN69_61,"RGEALTI_FXX_0980_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6355_MNT_LAMB93_IGN69_60,"RGEALTI_FXX_0980_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6350_MNT_LAMB93_IGN69_59,"RGEALTI_FXX_0980_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6345_MNT_LAMB93_IGN69_58,"RGEALTI_FXX_0980_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6340_MNT_LAMB93_IGN69_57,"RGEALTI_FXX_0980_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0980_6335_MNT_LAMB93_IGN69_56,"RGEALTI_FXX_0975_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6370_MNT_LAMB93_IGN69_55,"RGEALTI_FXX_0975_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6365_MNT_LAMB93_IGN69_54,"RGEALTI_FXX_0975_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6360_MNT_LAMB93_IGN69_53,"RGEALTI_FXX_0975_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6355_MNT_LAMB93_IGN69_52,"RGEALTI_FXX_0975_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6350_MNT_LAMB93_IGN69_51,"RGEALTI_FXX_0975_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6345_MNT_LAMB93_IGN69_50,"RGEALTI_FXX_0975_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6340_MNT_LAMB93_IGN69_49,"RGEALTI_FXX_0975_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0975_6335_MNT_LAMB93_IGN69_48,"RGEALTI_FXX_0970_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6370_MNT_LAMB93_IGN69_47,"RGEALTI_FXX_0970_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6365_MNT_LAMB93_IGN69_46,"RGEALTI_FXX_0970_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6360_MNT_LAMB93_IGN69_45,"RGEALTI_FXX_0970_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6355_MNT_LAMB93_IGN69_44,"RGEALTI_FXX_0970_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6350_MNT_LAMB93_IGN69_43,"RGEALTI_FXX_0970_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6345_MNT_LAMB93_IGN69_42,"RGEALTI_FXX_0970_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6340_MNT_LAMB93_IGN69_41,"RGEALTI_FXX_0970_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0970_6335_MNT_LAMB93_IGN69_40,"RGEALTI_FXX_0965_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6370_MNT_LAMB93_IGN69_39,"RGEALTI_FXX_0965_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6365_MNT_LAMB93_IGN69_38,"RGEALTI_FXX_0965_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6360_MNT_LAMB93_IGN69_37,"RGEALTI_FXX_0965_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6355_MNT_LAMB93_IGN69_36,"RGEALTI_FXX_0965_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6350_MNT_LAMB93_IGN69_35,"RGEALTI_FXX_0965_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6345_MNT_LAMB93_IGN69_34,"RGEALTI_FXX_0965_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6340_MNT_LAMB93_IGN69_33,"RGEALTI_FXX_0965_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0965_6335_MNT_LAMB93_IGN69_32,"RGEALTI_FXX_0960_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6370_MNT_LAMB93_IGN69_31,"RGEALTI_FXX_0960_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6365_MNT_LAMB93_IGN69_30,"RGEALTI_FXX_0960_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6360_MNT_LAMB93_IGN69_29,"RGEALTI_FXX_0960_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6355_MNT_LAMB93_IGN69_28,"RGEALTI_FXX_0960_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6350_MNT_LAMB93_IGN69_27,"RGEALTI_FXX_0960_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6345_MNT_LAMB93_IGN69_26,"RGEALTI_FXX_0960_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6340_MNT_LAMB93_IGN69_25,"RGEALTI_FXX_0960_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0960_6335_MNT_LAMB93_IGN69_24,"RGEALTI_FXX_0955_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6370_MNT_LAMB93_IGN69_23,"RGEALTI_FXX_0955_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6365_MNT_LAMB93_IGN69_22,"RGEALTI_FXX_0955_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6360_MNT_LAMB93_IGN69_21,"RGEALTI_FXX_0955_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6355_MNT_LAMB93_IGN69_20,"RGEALTI_FXX_0955_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6350_MNT_LAMB93_IGN69_19,"RGEALTI_FXX_0955_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6345_MNT_LAMB93_IGN69_18,"RGEALTI_FXX_0955_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6340_MNT_LAMB93_IGN69_17,"RGEALTI_FXX_0955_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0955_6335_MNT_LAMB93_IGN69_16,"RGEALTI_FXX_0950_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6370_MNT_LAMB93_IGN69_15,"RGEALTI_FXX_0950_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6365_MNT_LAMB93_IGN69_14,"RGEALTI_FXX_0950_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6360_MNT_LAMB93_IGN69_13,"RGEALTI_FXX_0950_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6355_MNT_LAMB93_IGN69_12,"RGEALTI_FXX_0950_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6350_MNT_LAMB93_IGN69_11,"RGEALTI_FXX_0950_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6345_MNT_LAMB93_IGN69_10,"RGEALTI_FXX_0950_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6340_MNT_LAMB93_IGN69_9,"RGEALTI_FXX_0950_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0950_6335_MNT_LAMB93_IGN69_8,"RGEALTI_FXX_0945_6370_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6370_MNT_LAMB93_IGN69_7,"RGEALTI_FXX_0945_6365_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6365_MNT_LAMB93_IGN69_6,"RGEALTI_FXX_0945_6360_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6360_MNT_LAMB93_IGN69_5,"RGEALTI_FXX_0945_6355_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6355_MNT_LAMB93_IGN69_4,"RGEALTI_FXX_0945_6350_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6350_MNT_LAMB93_IGN69_3,"RGEALTI_FXX_0945_6345_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6345_MNT_LAMB93_IGN69_2,"RGEALTI_FXX_0945_6340_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6340_MNT_LAMB93_IGN69_1,"RGEALTI_FXX_0945_6335_MNT_LAMB93_IGN69": layer_RGEALTI_FXX_0945_6335_MNT_LAMB93_IGN69_0,}).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
